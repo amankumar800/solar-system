@@ -27,7 +27,15 @@ jobs:
         run: npm install
 
       - name: Unit Testing
+        id: notejs-unit-testing-step
         run: npm test
+
+      - name: Archive Test Result
+        if : steps.notejs-unit-testing-step == 'failure'  || steps.notejs-unit-testing-step == 'success'
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mocha-Test-Result
+          path: test-results.xml
 
       
   code-coverage:
