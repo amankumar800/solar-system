@@ -35,7 +35,7 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          
+
       - name: Install Dependencies
         run: npm install
 
@@ -49,6 +49,8 @@ jobs:
         with:
           name: Mocha-Test-Result
           path: test-results.xml
+          overwrite: true
+
 
       
   code-coverage:
